@@ -1,10 +1,11 @@
 module Tictactoe
 
 class Game
-  attr_reader :board, :current_player
+  attr_reader :board, :current_player, :winner 
   def initialize(player1, player2, board)
     @player1 = player1
     @player2 = player2
+    @winner = false 
     @board = board
   end
 
@@ -18,26 +19,28 @@ class Game
 
   def make_move(player, move_coordinates)
     @board.play_piece(player.player_piece, move_coordinates)
+  end
 
-
-    # When someone makes a move, and we need to check for a win, we only need to check 
-    # that specific row/column/diagonal(?) that the move was made in. 
+  def switch_players
+    @current_player = @current_player == @player1 ? @player2 : @player1
   end
 
   def game_over?
-    
+    @winner || check_if_draw
   end
 
   def get_winner
-
+    
   end
 
   def check_if_win(player, move_coordinates)
-    check_row(player, move_coordinates) || check_column(player, move_coordinates) || check_diagonals(player, move_coordinates)
+    if check_row(player, move_coordinates) || check_column(player, move_coordinates) || check_diagonals(player, move_coordinates)
+      @winner = @current_player
+    end
   end
 
   def check_if_draw 
-
+    @board.blank_spaces == @board.taken_spaces
   end
 
   private 
@@ -93,12 +96,12 @@ class Game
       end
       i += 1
     end
-    true
+    true 
   end
 end
 
 end
 
 if __FILE__ == $0
-p board = Tictactoe::Board.new(3).is_full?
+ board = Tictactoe::Board.new(3).is_full?
 end

@@ -1,7 +1,7 @@
 module Tictactoe
 
 class Board 
-  attr_reader :game_board, :width_of_board
+  attr_reader :game_board, :width_of_board, :taken_spaces, :blank_spaces
 
   def initialize(width_of_board)
     @width_of_board = width_of_board
@@ -26,13 +26,10 @@ class Board
   end
 
   def play_piece(piece, space)
-    x_coord = space.first
-    y_coord = space.last 
-
+    x_coord = space.first.to_i
+    y_coord = space.last.to_i 
     @game_board[x_coord][y_coord] = piece 
-
-    #Should space be an array of two numbers? 
-    #Piece is either an "X" or an "O"
+    @taken_spaces += 1
   end
 
 end
@@ -44,4 +41,6 @@ end
 
 end
 
+if __FILE__ == $0
 p board = Tictactoe::Board.new(3).is_full?
+end
