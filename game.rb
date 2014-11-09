@@ -1,7 +1,7 @@
 module Tictactoe
 
 class Game
-  attr_reader :board 
+  attr_reader :board, :current_player
   def initialize(player1, player2, board)
     @player1 = player1
     @player2 = player2
@@ -9,11 +9,11 @@ class Game
   end
 
   def start_game
-
+    @current_player = rand(0..10) < 5 ? @player1 : @player2
   end
 
   def reset_game
-
+    @board.reset_game_board
   end
 
   def make_move(player, move_coordinates)

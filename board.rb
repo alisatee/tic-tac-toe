@@ -1,6 +1,7 @@
 module Tictactoe
 
 class Board 
+  attr_reader :game_board, :width_of_board
 
   def initialize(width_of_board)
     @width_of_board = width_of_board
@@ -25,6 +26,11 @@ class Board
   end
 
   def play_piece(piece, space)
+    x_coord = space.first
+    y_coord = space.last 
+
+    @game_board[x_coord][y_coord] = piece 
+
     #Should space be an array of two numbers? 
     #Piece is either an "X" or an "O"
   end
