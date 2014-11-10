@@ -40,7 +40,7 @@ class Game
   end
 
   def check_if_draw 
-    @board.blank_spaces == @board.taken_spaces
+    @board.is_full?
   end
 
   private 
