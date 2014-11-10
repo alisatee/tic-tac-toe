@@ -40,7 +40,7 @@ class Board
       @game_board[x][y] = piece 
       @taken_spaces += 1
     else 
-      false #can't go at the input
+      return false 
     end
   end
 

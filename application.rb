@@ -23,7 +23,7 @@ module Tictactoe
       until @game.game_over? do 
       @display.render_game_board(@board)
       coordinates = @display.prompt_for_turn(@game.current_player.player_piece)
-      @game.game_cycle(coordinates) 
+      @display.render_invalid_input_message(@game.current_player.player_piece) if !@game.game_cycle(coordinates) 
       end
       @game.winner ? @display.congratulate_winner(@game.winner.player_piece) : @display.announce_draw
       @display.render_game_board(@board)
