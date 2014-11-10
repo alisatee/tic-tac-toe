@@ -25,11 +25,23 @@ class Board
     @taken_spaces == @blank_spaces
   end
 
+  def in_bounds?(x,y)
+    x < @width_of_board && y < @width_of_board
+  end
+
+  def space_taken?(x,y)
+    @game_board[x][y] != nil 
+  end
+
   def play_piece(piece, space)
-    x_coord = space.first.to_i
-    y_coord = space.last.to_i 
-    @game_board[x_coord][y_coord] = piece 
-    @taken_spaces += 1
+    x = space.first.to_i
+    y = space.last.to_i 
+    if in_bounds?(x,y) && !space_taken?(x,y)
+      @game_board[x][y] = piece 
+      @taken_spaces += 1
+    else 
+      false #can't go at the input
+    end
   end
 
 end
