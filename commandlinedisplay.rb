@@ -25,12 +25,12 @@ class Commandline_display
     turn_coordinates = turn_coordinates.split("").map! {|coord| coord.to_i }
     else
       render_invalid_input_message(current_player)
+      prompt_for_turn(current_player)
     end 
   end
 
   def render_invalid_input_message(current_player)
     puts "Ooops! Invalid input. Try again."
-    prompt_for_turn(current_player)
   end
 
   def congratulate_winner(winner)

@@ -44,10 +44,11 @@ class Game
   def game_cycle(coordinates)
     if make_move(@current_player, coordinates)
       check_if_win(@current_player, coordinates)
-      @current_player != @winner ? switch_players : false
+      switch_players if @current_player != @winner 
     else
       return false 
     end
+    true
   end
   
 end
