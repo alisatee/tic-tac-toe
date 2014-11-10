@@ -15,10 +15,11 @@ class Game
 
   def reset_game
     @board.reset_game_board
+    @winner = nil 
   end
 
   def make_move(player, move_coordinates)
-      @board.play_piece(player.player_piece, move_coordinates)
+    @board.play_piece(player.player_piece, move_coordinates)
   end
 
   def switch_players
@@ -26,7 +27,6 @@ class Game
   end
 
   def game_over?
-    p "game over?"
     @winner || check_if_draw
   end
 
@@ -37,7 +37,7 @@ class Game
   end
 
   def check_if_draw 
-    @board.is_full?
+    @board.is_full? 
   end
   
 end

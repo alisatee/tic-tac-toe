@@ -9,14 +9,15 @@ module Tictactoe
     attr_reader :board 
     def initialize
       @player1 = Player.new("X")
-      @player2 = Player.new("O")
-      @display = Tictactoe::Commandline_display.new
-      @board = Tictactoe::Board.new(3)
-      @game = Tictactoe::Game.new(@player1, @player2, @board)
+      @player2 = Unbeatable_player.new("O")
+      @display = Commandline_display.new
+      @board = Board.new(3)
+      @game = Game.new(@player1, @player2, @board)
       run_game
     end
 
     def run_game 
+      @game.reset_game 
       @game.start_game
       @display.render_game_welcome 
 
@@ -27,9 +28,9 @@ module Tictactoe
       @game.check_if_win(@game.current_player.player_piece, coordinates)
       @game.current_player != @game.winner ? @game.switch_players : true 
       end
-      puts "GAME OVER."
-      puts "Congratulations #{@game.current_player.player_piece}, you won!"
+      @game.winner ? @display.congratulate_winner(@game.winner.player_piece) : @display.announce_draw
       @display.render_game_board(@board)
+      @display.prompt_to_play_again == "Y" ? run_game : "Bye!"
     end
 
   end
