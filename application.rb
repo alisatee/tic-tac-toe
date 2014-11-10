@@ -17,20 +17,17 @@ module Tictactoe
     end
 
     def run_game 
-      @game.reset_game 
       @game.start_game
       @display.render_game_welcome 
 
       until @game.game_over? do 
       @display.render_game_board(@board)
       coordinates = @display.prompt_for_turn(@game.current_player.player_piece)
-      @game.make_move(@game.current_player, coordinates)
-      @game.check_if_win(@game.current_player.player_piece, coordinates)
-      @game.current_player != @game.winner ? @game.switch_players : true 
+      @game.game_cycle(coordinates) 
       end
       @game.winner ? @display.congratulate_winner(@game.winner.player_piece) : @display.announce_draw
       @display.render_game_board(@board)
-      @display.prompt_to_play_again == "Y" ? run_game : "Bye!"
+      run_game if @display.prompt_to_play_again == "Y" 
     end
 
   end

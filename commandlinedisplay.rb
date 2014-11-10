@@ -18,9 +18,15 @@ class Commandline_display
 
   def prompt_for_turn(current_player) 
     render_current_player(current_player)
-    puts "Please enter the coordinates of where you would like to go:"
+    puts "Please enter the coordinates of where you would like to go, \nseparated by a comma:"
     turn_coordinates = gets.chomp 
+    p turn_coordinates
+    if validate_input(turn_coordinates)
     turn_coordinates = turn_coordinates.split("").map! {|coord| coord.to_i }
+    else
+    puts "Ooops! Invalid input. Try again."
+    prompt_for_turn(current_player)
+    end 
   end
 
   def congratulate_winner(winner)
@@ -34,6 +40,10 @@ class Commandline_display
   def prompt_to_play_again
     puts "Do you want to play again? (Y/N)"
     answer = gets.chomp
+  end
+
+  def validate_input(input)
+    input =~ /\w,\w/ 
   end
 
 end

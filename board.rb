@@ -5,13 +5,13 @@ class Board
 
   def initialize(width_of_board)
     @width_of_board = width_of_board
-    @blank_spaces = width_of_board ** 2
-    @taken_spaces = 0
     self.create_game_board
   end
 
   def create_game_board
     @game_board = []
+    @blank_spaces = width_of_board ** 2
+    @taken_spaces = 0
     @width_of_board.times do 
     @game_board << Array.new(@width_of_board)
     end

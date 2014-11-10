@@ -10,6 +10,7 @@ class Game
   end
 
   def start_game
+    reset_game
     @current_player = rand(0..10) < 5 ? @player1 : @player2
   end
 
@@ -31,13 +32,19 @@ class Game
   end
 
   def check_if_win(player, move_coordinates)
-    if @check_win.winner_exists?(player, move_coordinates)
+    if @check_win.winner_exists?(player.player_piece, move_coordinates)
       @winner = @current_player
     end
   end
 
   def check_if_draw 
     @board.is_full? 
+  end
+
+  def game_cycle(coordinates)
+    make_move(@current_player, coordinates)
+    check_if_win(@current_player, coordinates)
+    @current_player != @winner ? switch_players : false
   end
   
 end
