@@ -19,11 +19,14 @@ module Tictactoe
     def run_game 
       @game.start_game
       @display.render_game_welcome 
-
+      if @game.current_player == @player2
+        @player2.go_randomly(@game)
+      end
       until @game.game_over? do 
       @display.render_game_board(@board)
       coordinates = @display.prompt_for_turn(@game.current_player.player_piece)
       @display.render_invalid_input_message(@game.current_player.player_piece) if !@game.game_cycle(coordinates) 
+      @player2.go_randomly(@game)
       end
       @game.winner ? @display.congratulate_winner(@game.winner.player_piece) : @display.announce_draw
       @display.render_game_board(@board)
