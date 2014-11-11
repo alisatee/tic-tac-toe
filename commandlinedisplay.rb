@@ -16,20 +16,18 @@ class Commandline_display
     board.game_board.each {|row| p row }
   end
 
-  def prompt_for_turn(current_player) 
-    render_current_player(current_player)
+  def prompt_for_turn
     puts "Please enter the coordinates of where you would like to go, \nseparated by a comma:"
     turn_coordinates = gets.chomp 
-    p turn_coordinates
     if validate_input(turn_coordinates)
     turn_coordinates = turn_coordinates.split(",").map! {|coord| coord.to_i }
     else
-      render_invalid_input_message(current_player)
-      prompt_for_turn(current_player)
+      render_invalid_input_message
+      prompt_for_turn
     end 
   end
 
-  def render_invalid_input_message(current_player)
+  def render_invalid_input_message
     puts "Ooops! Invalid input. Try again."
   end
 
