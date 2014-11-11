@@ -45,12 +45,6 @@ class Board
     end
   end
 
-  def copy
-    board_clone = Board.new(@width_of_board)
-    board_clone.taken_spaces = @taken_spaces
-    board_clone.available_moves = @available_moves
-  end
-
   def generate_all_moves(array)
     array.product(array)
   end

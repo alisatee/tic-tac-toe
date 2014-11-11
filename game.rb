@@ -2,6 +2,7 @@ module Tictactoe
 require_relative "winlogic"
 class Game
   attr_reader :board, :current_player, :winner 
+
   def initialize(player1, player2, board)
     @player1 = player1
     @player2 = player2
@@ -49,6 +50,10 @@ class Game
       return false 
     end
     true
+  end
+
+  def copy 
+    Game.new(@player1, @player2, Marshal.load(Marshal.dump(@board)))
   end
   
 end
