@@ -1,8 +1,8 @@
 module Tictactoe
 
 class Board 
-  attr_reader :game_board, :width_of_board, :taken_spaces, :blank_spaces
-
+  attr_reader :game_board, :width_of_board, :blank_spaces
+  attr_accessor :taken_spaces, :available_moves
   def initialize(width_of_board)
     @width_of_board = width_of_board
     self.create_game_board
@@ -12,6 +12,7 @@ class Board
     @game_board = []
     @blank_spaces = width_of_board ** 2
     @taken_spaces = 0
+    @available_moves = generate_all_moves(@width_of_board.times.to_a)
     @width_of_board.times do 
     @game_board << Array.new(@width_of_board)
     end
@@ -44,6 +45,15 @@ class Board
     end
   end
 
+  def copy
+    board_clone = Board.new(@width_of_board)
+    board_clone.taken_spaces = @taken_spaces
+    board_clone.available_moves = @available_moves
+  end
+
+  def generate_all_moves(array)
+    array.product(array)
+  end
 end
 
 
