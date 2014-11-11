@@ -22,7 +22,7 @@ class Commandline_display
     turn_coordinates = gets.chomp 
     p turn_coordinates
     if validate_input(turn_coordinates)
-    turn_coordinates = turn_coordinates.split("").map! {|coord| coord.to_i }
+    turn_coordinates = turn_coordinates.split(",").map! {|coord| coord.to_i }
     else
       render_invalid_input_message(current_player)
       prompt_for_turn(current_player)
