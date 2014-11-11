@@ -1,13 +1,14 @@
 module Tictactoe
 require_relative "winlogic"
 class Game
-  attr_reader :board, :current_player, :winner 
+  attr_reader :board, :current_player, :winner, :player1, :player2, :winner  
 
-  def initialize(player1, player2, board)
-    @player1 = player1
-    @player2 = player2
+  def initialize(board)
+    @player1 = Player.new("X")
+    @player2 = Unbeatable_player.new("O")
     @board = board
     @check_win = Win_logic.new(@board)
+    @winner = nil 
   end
 
   def start_game
@@ -20,40 +21,39 @@ class Game
     @winner = nil 
   end
 
-  def make_move(player, move_coordinates)
-    @board.play_piece(player.player_piece, move_coordinates)
+  def make_move(move_coordinates)
+    @board.play_piece(@current_player.player_piece, move_coordinates)
   end
 
   def switch_players
     @current_player = @current_player == @player1 ? @player2 : @player1
   end
 
-  def game_over?
+  def over?
     @winner || check_if_draw
   end
 
-  def check_if_win(player, move_coordinates)
-    if @check_win.winner_exists?(player.player_piece, move_coordinates)
+  def check_if_win(move_coordinates)
+    if @check_win.winner_exists?(@current_player.player_piece, move_coordinates)
       @winner = @current_player
+      return true
     end
+  end
+
+  def loser?(player)
+    @winner == player
   end
 
   def check_if_draw 
     @board.is_full? 
   end
 
-  def game_cycle(coordinates)
-    if make_move(@current_player, coordinates)
-      check_if_win(@current_player, coordinates)
-      switch_players if @current_player != @winner 
-    else
-      return false 
-    end
-    true
+  def game_flow(move_coordinates)
+
   end
 
-  def copy 
-    Game.new(@player1, @player2, Marshal.load(Marshal.dump(@board)))
+  def copy
+    Marshal.load(Marshal.dump(self))
   end
   
 end

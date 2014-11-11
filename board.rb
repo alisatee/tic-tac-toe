@@ -26,6 +26,10 @@ class Board
     @taken_spaces == @blank_spaces
   end
 
+  def is_empty?
+    @taken_spaces == 0
+  end
+
   def in_bounds?(x,y)
     x < @width_of_board && y < @width_of_board
   end
@@ -40,6 +44,7 @@ class Board
     if in_bounds?(x,y) && !space_taken?(x,y)
       @game_board[x][y] = piece 
       @taken_spaces += 1
+      @available_moves.delete(space)
     else 
       return false 
     end
@@ -57,6 +62,3 @@ end
 
 end
 
-if __FILE__ == $0
-p board = Tictactoe::Board.new(3).is_full?
-end

@@ -8,29 +8,41 @@ module Tictactoe
   class Application
     attr_reader :board 
     def initialize
-      @player1 = Player.new("X")
-      @player2 = Unbeatable_player.new("O")
       @display = Commandline_display.new
       @board = Board.new(3)
-      @game = Game.new(@player1, @player2, @board)
+      @game = Game.new(@board)
       run_game
     end
 
     def run_game 
       @game.start_game
-      @display.render_game_welcome 
-      if @game.current_player == @player2
-        @player2.go_randomly(@game)
+      @display.render_game_welcome
+
+
+
+      until @game.over?
+        if current_player == @game.player1
+          @display.render_current_player(current_player.player_piece)
+          @display.render_game_board(@board)
+          coordinates = @display.prompt_for_turn
+          @display.render_invalid_input_message && @display.prompt_for_turn if !@game.make_move(coordinates)
+          @game.check_if_win(coordinates)
+          @game.switch_players if !@game.over?
+        else
+          @display.render_current_player(current_player.player_piece)
+          @game.player2.make_move(@game)
+          @display.render_game_board(@board)
+          @game.switch_players if !@game.over?
+        end
       end
-      until @game.game_over? do 
       @display.render_game_board(@board)
-      coordinates = @display.prompt_for_turn(@game.current_player.player_piece)
-      @display.render_invalid_input_message(@game.current_player.player_piece) if !@game.game_cycle(coordinates) 
-      @player2.go_randomly(@game)
-      end
-      @game.winner ? @display.congratulate_winner(@game.winner.player_piece) : @display.announce_draw
-      @display.render_game_board(@board)
-      run_game if @display.prompt_to_play_again == "Y" 
+      @display.congratulate_winner(current_player.player_piece)
+
+    end
+
+    private
+    def current_player
+      @game.current_player
     end
 
   end
