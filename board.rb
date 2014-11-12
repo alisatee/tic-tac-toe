@@ -1,8 +1,8 @@
 module Tictactoe
 
 class Board 
-  attr_reader :game_board, :width_of_board, :blank_spaces
-  attr_accessor :taken_spaces, :available_moves
+  attr_reader :width_of_board, :blank_spaces
+  attr_accessor :taken_spaces, :available_moves, :game_board
   def initialize(width_of_board)
     @width_of_board = width_of_board
     self.create_game_board

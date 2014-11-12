@@ -22,7 +22,7 @@ class Game
   end
 
   def make_move(move_coordinates)
-    @board.play_piece(@current_player.player_piece, move_coordinates)
+    @board.play_piece(@current_player.player_piece, move_coordinates) && check_if_win(move_coordinates)
   end
 
   def switch_players
@@ -30,7 +30,7 @@ class Game
   end
 
   def over?
-    @winner || check_if_draw
+    @winner || draw?
   end
 
   def check_if_win(move_coordinates)
@@ -44,8 +44,8 @@ class Game
     @winner == player
   end
 
-  def check_if_draw 
-    @board.is_full? 
+  def draw? 
+    @board.is_full? && @winner == nil 
   end
 
   def game_flow(move_coordinates)
