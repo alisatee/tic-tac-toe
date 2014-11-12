@@ -18,26 +18,24 @@ module Tictactoe
       @game.start_game
       @display.render_game_welcome
 
-
-
       until @game.over?
-        if current_player == @game.player1
-          @display.render_current_player(current_player.player_piece)
-          @display.render_game_board(@board)
-          coordinates = @display.prompt_for_turn
-          @display.render_invalid_input_message && @display.prompt_for_turn if !@game.make_move(coordinates)
-          @game.check_if_win(coordinates)
-          @game.switch_players if !@game.over?
+        @display.render_current_player(@game.current_player.player_piece)
+        user_input = display_prompt_for_input
+        if @game.valid_move?(user_input)
+          @game.make_move(user_input)
+          @game.switch_players
         else
-          @display.render_current_player(current_player.player_piece)
-          @game.player2.make_move(@game)
-          @display.render_game_board(@board)
-          @game.switch_players if !@game.over?
+          @display.render_invalid_input_message && prompt_for_turn
         end
       end
       @display.render_game_board(@board)
-      @display.congratulate_winner(current_player.player_piece)
+      @game.draw? ? @display.announce_draw : @display.congratulate_winner(@game.winner.player_piece)
+      run_game if @display.prompt_to_play_again == "Y"
+    end
 
+    def display_prompt_for_input
+      @display.render_game_board(@board)
+      @display.prompt_for_turn
     end
 
     private

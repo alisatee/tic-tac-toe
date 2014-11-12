@@ -30,24 +30,18 @@ class Board
     @taken_spaces == 0
   end
 
-  def in_bounds?(x,y)
-    x < @width_of_board && y < @width_of_board
+  def in_bounds?(coordinates)
+    coordinates.first < @width_of_board && coordinates.last < @width_of_board
   end
 
-  def space_taken?(x,y)
-    @game_board[x][y] != nil 
+  def space_taken?(coordinates)
+    @game_board[coordinates.first][coordinates.last] != nil 
   end
 
   def play_piece(piece, space)
-    x = space.first.to_i
-    y = space.last.to_i 
-    if in_bounds?(x,y) && !space_taken?(x,y)
-      @game_board[x][y] = piece 
+      @game_board[space.first][space.last] = piece 
       @taken_spaces += 1
       @available_moves.delete(space)
-    else 
-      return false 
-    end
   end
 
   def generate_all_moves(array)

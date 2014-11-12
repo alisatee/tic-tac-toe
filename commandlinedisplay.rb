@@ -5,7 +5,7 @@ class Commandline_display
   def render_game_welcome
     puts "Welcome to Tic Tac Toe!"
     puts "Flipping coin to see who gets to go first..."
-    # sleep(3)
+    sleep(3)
   end
 
   def render_current_player(current_player)
@@ -20,15 +20,12 @@ class Commandline_display
     puts "Please enter the coordinates of where you would like to go, \nseparated by a comma:"
     turn_coordinates = gets.chomp 
     if validate_input(turn_coordinates)
-    turn_coordinates = turn_coordinates.split(",").map! {|coord| coord.to_i }
-    else
-      render_invalid_input_message
-      prompt_for_turn
-    end 
+      turn_coordinates = turn_coordinates.split(",").map! {|coord| coord.to_i }
+    end
   end
 
   def render_invalid_input_message
-    puts "Ooops! Invalid input. Try again."
+    puts "\nOoops! Invalid input. Try again.\n\n"
   end
 
   def congratulate_winner(winner)
@@ -49,7 +46,4 @@ class Commandline_display
   end
 
 end
-
-
-
 end

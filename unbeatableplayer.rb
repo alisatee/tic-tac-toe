@@ -4,8 +4,12 @@ module Tictactoe
 
 class Unbeatable_player < Player 
 
-  def make_move(game)
-    game.make_move(minimax(game))
+  def make_best_move(game)
+      game.make_move(minimax(game))
+  end
+
+  def go_randomly(game)
+    game.make_move(game.board.available_moves.sample)
   end
 
   def minimax(game_state, depth = 0, scores = {})
