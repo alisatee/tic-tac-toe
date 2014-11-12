@@ -40,16 +40,8 @@ class Game
     end
   end
 
-  def loser?(player)
-    @winner == player
-  end
-
   def draw? 
     @board.is_full? && @winner == nil 
-  end
-
-  def game_flow(move_coordinates)
-
   end
 
   def copy
