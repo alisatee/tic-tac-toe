@@ -16,7 +16,6 @@ class Game
     @current_player = rand(0..10) < 5 ? @player1 : @player2
     if @current_player == @player2 
       @player2.go_randomly(self) 
-      switch_players
     end
   end
 
@@ -31,7 +30,9 @@ class Game
 
   def make_move(move_coordinates)
     @board.play_piece(@current_player.player_piece, move_coordinates) 
-    switch_players if !check_if_win(move_coordinates)
+    if !check_if_win(move_coordinates)
+      switch_players
+    end
   end
 
   def switch_players

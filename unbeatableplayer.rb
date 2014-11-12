@@ -31,7 +31,6 @@ class Unbeatable_player < Player
     elsif depth > 0
       return highest_score
     end
-
   end
 
 end
