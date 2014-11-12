@@ -30,7 +30,8 @@ class Game
   end
 
   def make_move(move_coordinates)
-    @board.play_piece(@current_player.player_piece, move_coordinates) && check_if_win(move_coordinates)
+    @board.play_piece(@current_player.player_piece, move_coordinates) 
+    switch_players if !check_if_win(move_coordinates)
   end
 
   def switch_players

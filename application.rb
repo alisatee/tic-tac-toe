@@ -23,7 +23,6 @@ module Tictactoe
         user_input = display_prompt_for_input
         if @game.valid_move?(user_input)
           @game.make_move(user_input)
-          @game.switch_players
         else
           @display.render_invalid_input_message && prompt_for_turn
         end
