@@ -48,11 +48,5 @@ class Board
     array.product(array)
   end
 end
-
-
-
-
-
-
 end
 
