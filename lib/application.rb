@@ -10,7 +10,7 @@ module Tictactoe
     def initialize
       @display = Commandline_display.new
       @board = Board.new(3)
-      @game = Game.new(@board)
+      @game = Game.new(@board, Player.new("X"), Unbeatable_player.new("O"))
       run_game
     end
 

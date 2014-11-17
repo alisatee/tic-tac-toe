@@ -1,7 +1,8 @@
 module Tictactoe
 require_relative "winlogic"
 class Game
-  attr_reader :board, :current_player, :winner, :player1, :player2, :winner  
+  attr_reader :board, :current_player, :player1, :player2, :winner  
+  attr_accessor :winner
 
   def initialize(board, player1 = Player.new("X"), player2 = Player.new("O"))
     @player1 = player1
