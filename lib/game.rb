@@ -3,9 +3,9 @@ require_relative "winlogic"
 class Game
   attr_reader :board, :current_player, :winner, :player1, :player2, :winner  
 
-  def initialize(board)
-    @player1 = Player.new("X")
-    @player2 = Unbeatable_player.new("O")
+  def initialize(board, player1 = Player.new("X"), player2 = Player.new("O"))
+    @player1 = player1
+    @player2 = player2
     @board = board
     @check_win = Win_logic.new(@board)
     @winner = nil 
