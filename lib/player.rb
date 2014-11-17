@@ -6,15 +6,5 @@ class Player
   def initialize(player_piece)
     @player_piece = player_piece
   end
-
-
-
-
 end
-
-
-
-
-
-
 end
