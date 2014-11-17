@@ -24,7 +24,7 @@ module Tictactoe
         if @game.valid_move?(user_input)
           @game.make_move(user_input) 
           @game.switch_players
-          @game.player2.make_best_move(@game)
+          @game.player2.make_best_move(@game) if !@game.over?
           @game.switch_players
         else
           @display.render_invalid_input_message 
