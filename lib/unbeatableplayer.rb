@@ -12,13 +12,13 @@ module Tictactoe
     end
 
     def minimax(game_state, depth = 0, scores = {})
-      return 0 if game_state.draw?
-      return -1 if game_state.over?
+      return 0 if game_state.draw?()
+      return -1 if game_state.over?()
 
       game_state.board.available_moves.each do |move|
         game_clone = game_state.copy
         game_clone.make_move(move)
-        game_clone.switch_players
+        game_clone.switch_players()
         scores[move] = -1 * minimax(game_clone, depth + 1, {})
       end
     
