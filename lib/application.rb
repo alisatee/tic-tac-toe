@@ -11,27 +11,26 @@ module Tictactoe
       @display = Commandline_display.new
       @board = Board.new(3)
       @game = Game.new(@board, Player.new("X"), Unbeatable_player.new("O"))
-      run_game
+      run_game()
     end
 
     def run_game 
-      @game.start_game
-      @display.render_game_welcome
+      @game.start_game()
+      @display.render_game_welcome()
 
-      until @game.over?
+      until @game.over?()
         @display.render_current_player(@game.current_player.player_piece)
-        user_input = display_prompt_for_input
+        user_input = display_prompt_for_input()
         if @game.valid_move?(user_input)
           @game.make_move(user_input) 
-          @game.switch_players
-          @game.player2.make_best_move(@game) if !@game.over?
-          @game.switch_players
+          @game.switch_players()
+          @game.player2.make_best_move(@game) if !@game.over?()
+          @game.switch_players()
         else
-          @display.render_invalid_input_message 
+          @display.render_invalid_input_message() 
         end
       end
-
-      end_game
+      end_game()
     end
 
     def display_prompt_for_input
