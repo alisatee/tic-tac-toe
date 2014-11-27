@@ -35,13 +35,13 @@ module Tictactoe
 
     def display_prompt_for_input
       @display.render_game_board(@board)
-      @display.prompt_for_turn
+      @display.prompt_for_turn()
     end
 
     def end_game
       @display.render_game_board(@board)
-      @game.draw? ? @display.announce_draw : @display.congratulate_winner(@game.winner.player_piece)
-      run_game if @display.prompt_to_play_again == "Y"
+      @game.draw?() ? @display.announce_draw() : @display.congratulate_winner(@game.winner.player_piece)
+      run_game() if @display.prompt_to_play_again() == "Y"
     end
 
     private
