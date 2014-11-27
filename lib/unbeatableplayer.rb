@@ -1,7 +1,7 @@
 require_relative "game"
 
-module Tictactoe
-  class Unbeatable_player < Player 
+module TicTacToe
+  class UnbeatablePlayer < Player 
 
     def make_best_move(game)
       game.make_move(minimax(game))

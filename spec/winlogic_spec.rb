@@ -1,9 +1,9 @@
 require 'spec_helper'
-module Tictactoe
-  describe Win_logic do 
+module TicTacToe
+  describe WinLogic do 
     before :each do 
       @board = Board.new(3)
-      @win = Win_logic.new(@board)
+      @win = WinLogic.new(@board)
     end
 
   context '#winner_exists?' do 

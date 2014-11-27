@@ -1,4 +1,4 @@
-module Tictactoe
+module TicTacToe
   class Board 
     attr_reader :width_of_board, :blank_spaces
     attr_accessor :taken_spaces, :available_moves, :game_board
@@ -31,6 +31,14 @@ module Tictactoe
 
     def get_row(row_index)
       @game_board[row_index]
+    end
+
+    def get_column(column_index)
+      @game_board.transpose[column_index]
+    end
+
+    def get_diagonal(direction)
+
     end
 
     def in_bounds?(coordinates)

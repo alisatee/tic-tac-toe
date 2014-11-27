@@ -1,4 +1,4 @@
-module Tictactoe
+module TicTacToe
   class Player
     attr_reader :player_piece
 

@@ -1,5 +1,5 @@
-module Tictactoe
-  class Commandline_display
+module TicTacToe
+  class CommandlineDisplay
 
     def render_game_welcome
       puts "Welcome to Tic Tac Toe!"

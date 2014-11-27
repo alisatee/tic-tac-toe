@@ -4,13 +4,13 @@ require_relative "player"
 require_relative "unbeatableplayer"
 require_relative "commandlinedisplay"
 
-module Tictactoe
+module TicTacToe
   class Application
     attr_reader :board 
     def initialize
-      @display = Commandline_display.new
+      @display = CommandlineDisplay.new
       @board = Board.new(3)
-      @game = Game.new(@board, Player.new("X"), Unbeatable_player.new("O"))
+      @game = Game.new(@board, Player.new("X"), UnbeatablePlayer.new("O"))
       run_game()
     end
 
@@ -54,4 +54,4 @@ end
 
 
 
-Tictactoe::Application.new
+TicTacToe::Application.new

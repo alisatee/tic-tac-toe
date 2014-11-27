@@ -1,6 +1,6 @@
-module Tictactoe
+module TicTacToe
 
-class Win_logic
+class WinLogic
 
   def initialize(board)
     @board = board
@@ -17,19 +17,13 @@ class Win_logic
   end
 
   def check_row(player_piece, move_coordinates)
-      row = move_coordinates.first
-      @board.get_row(row).all? {|row_element| row_element == player_piece}
+    row = move_coordinates.first
+    @board.get_row(row).all? {|row_element| row_element == player_piece}
   end
 
   def check_column(player_piece, move_coordinates)
-    column_transposed = move_coordinates.last
-    @board.game_board.transpose[column_transposed].each do |space|
-       if space != player_piece
-        return false
-        break
-      end 
-    end
-    true 
+    column = move_coordinates.last
+    @board.get_column(column).all? {|column_element| column_element == player_piece}
   end
 
   def check_diagonals(player_piece, move_coordinates)

@@ -1,8 +1,8 @@
 require_relative "spec_helper"
-module Tictactoe
+module TicTacToe
   describe Game do 
     before :each do 
-      @game = Game.new(Board.new(3), Player.new("X"), Unbeatable_player.new("O") )
+      @game = Game.new(Board.new(3), Player.new("X"), UnbeatablePlayer.new("O") )
     end
 
   context '#initialize' do 

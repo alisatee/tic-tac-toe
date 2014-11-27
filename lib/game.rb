@@ -1,5 +1,5 @@
 require_relative "winlogic"
-module Tictactoe
+module TicTacToe
   class Game
     attr_reader :board, :current_player, :player1, :player2, :winner  
     attr_accessor :winner
@@ -8,7 +8,7 @@ module Tictactoe
       @player1 = player1
       @player2 = player2
       @board = board
-      @check_win = Win_logic.new(@board)
+      @check_win = WinLogic.new(@board)
       @winner = nil 
     end
 

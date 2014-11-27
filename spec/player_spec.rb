@@ -1,5 +1,5 @@
 require_relative "spec_helper"
-module Tictactoe
+module TicTacToe
   describe Player do 
   context '#initialize' do 
     it "should initalize a player with their respective player piece" do 

@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-module Tictactoe
+module TicTacToe
   describe Board do 
     before :each do 
       @board = Board.new(3)
