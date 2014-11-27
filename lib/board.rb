@@ -29,6 +29,10 @@ module Tictactoe
       @taken_spaces == 0
     end
 
+    def get_row(row_index)
+      @game_board[row_index]
+    end
+
     def in_bounds?(coordinates)
       coordinates.first < @width_of_board && coordinates.last < @width_of_board
     end

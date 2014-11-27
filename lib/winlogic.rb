@@ -18,13 +18,7 @@ class Win_logic
 
   def check_row(player_piece, move_coordinates)
       row = move_coordinates.first
-      @board.game_board[row].each do |space| 
-        if space != player_piece
-          return false
-          break
-        end 
-      end
-      true 
+      @board.get_row(row).all? {|row_element| row_element == player_piece}
   end
 
   def check_column(player_piece, move_coordinates)
