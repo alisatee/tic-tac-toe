@@ -1,8 +1,8 @@
 require_relative "winlogic"
 module TicTacToe
   class Game
-    attr_reader :board, :current_player, :player1, :player2, :winner  
-    attr_accessor :winner
+    attr_reader :board, :player1, :player2, :winner  
+    attr_accessor :winner, :current_player
 
     def initialize(board, player1 = Player.new("X"), player2 = Player.new("O"))
       @player1 = player1
@@ -14,11 +14,15 @@ module TicTacToe
 
     def start_game
       reset_game()
-      @current_player = rand(0..10) < 5 ? @player1 : @player2
+      choose_random_player()
       if @current_player == @player2 
         @player2.go_randomly(self)
         switch_players() 
       end
+    end
+
+    def choose_random_player
+      @current_player = rand(0..10) < 5 ? @player1 : @player2
     end
 
     def reset_game
@@ -32,6 +36,7 @@ module TicTacToe
 
     def make_move(move_coordinates)
       @board.play_piece(@current_player.player_piece, move_coordinates) && check_if_win(move_coordinates)
+      move_coordinates
     end
 
     def switch_players

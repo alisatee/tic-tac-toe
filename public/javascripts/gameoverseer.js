@@ -4,6 +4,7 @@ var GameOverseer = function(gameboard){
 
 GameOverseer.prototype = {
   startGame: function(){
-    $.ajax({ url: '/start' }).done(function(serverData){console.log(JSON.parse(serverData))})
+    var that = this
+    $.ajax({ url: '/start' }).done(function(serverData){ that.gameboard.renderBoard(serverData) })
   }
 }
