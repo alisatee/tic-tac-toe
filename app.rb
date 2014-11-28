@@ -6,8 +6,6 @@ require_relative "lib/commandlinedisplay"
 require_relative "lib/application"
 
 require 'sinatra'
-require 'sinatra/activerecord'
-require './config/environments'
 require 'json'
 
 
