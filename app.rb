@@ -12,7 +12,8 @@ require 'json'
 
 
 get '/' do 
-  "Hello World!"
+  
+  erb :index
 end
 
 get '/start' do 
