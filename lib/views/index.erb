@@ -1,0 +1,35 @@
+<head>
+<link rel="stylesheet" type="text/css" href="<%= url("/gameboard.css")%>">
+<link href='http://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+
+<header>
+  <h1>Tic-Tac-Toe</h1>
+</header>
+
+
+<div class="gameboard-wrapper">
+  <div class="gameboard"> 
+      <div id="1"></div>
+      <div id="2" class="left-right"></div>
+      <div id="3"></div>
+
+      <div id="4" class="up-down"></div>
+      <div id="5" class="all-around"></div>
+      <div id="6" class="up-down"></div>
+
+      <div id="7"></div>
+      <div id="8" class="left-right"></div>
+      <div id="9"></div>
+  </div>
+</div>
+
+<div class="game-stats-wrapper">
+  <button class="start"> START! </button>
+  <p> Warning: this game is unbeatable. You can try, but you won't get too far. :-) </p>
+</div>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="/javascripts/gameboard.js"> </script>
+<script src="/javascripts/player.js"> </script>
+<script src="/javascripts/gameoverseer.js"> </script>
