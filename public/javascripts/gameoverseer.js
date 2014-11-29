@@ -33,6 +33,7 @@ GameOverseer.prototype = {
     if (!data.game_over){
     this.movesMade.push(["player2", computer_move])
     this.board.changeCellBackgroundForComputer(computer_move)
+    this.bindBoardClickEvents()
     this.board.promptTurn()
     } else { 
       if (data.move_made == null){ this.board.displayTie()} 
@@ -44,7 +45,6 @@ GameOverseer.prototype = {
     this.board.disableBoardClick();
     this.movesMade.push(["player1", div_clicked.id.split("").map(Number)])
     this.board.changeCellBackgroundForHuman(div_clicked.id)
-    this.bindBoardClickEvents()
     this.getComputerMove()
   },
   getComputerMove: function(){
