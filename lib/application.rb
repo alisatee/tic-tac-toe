@@ -52,6 +52,6 @@ module TicTacToe
   end
 end
 
-
+TicTacToe::Application.new 
 
 

@@ -4,11 +4,31 @@ module TicTacToe
   class UnbeatablePlayer < Player 
 
     def make_best_move(game)
-      game.make_move(minimax(game))
+      if game.board.taken_spaces.length != 1
+        game.make_move(minimax(game))
+      else
+        make_second_move(game)
+      end
     end
 
     def go_randomly(game)
       game.make_move(game.board.available_moves.sample)
+    end
+
+    def make_second_move(game)
+      best_move_key = {
+        [0,0]=> [1,1],
+        [0,1]=> [0,0],
+        [0,2]=> [1,1],
+        [1,0]=> [0,0],
+        [1,1]=> [0,0],
+        [1,2]=> [0,1],
+        [2,0]=> [1,1],
+        [2,1]=> [0,1],
+        [2,2]=> [1,1]
+      }
+      best_move = best_move_key[game.board.taken_spaces[0]]
+      game.make_move(best_move)
     end
 
     def minimax(game_state, depth = 0, scores = {})

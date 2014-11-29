@@ -10,7 +10,7 @@ module TicTacToe
     def create_game_board
       @game_board = []
       @blank_spaces = @width_of_board ** 2
-      @taken_spaces = 0
+      @taken_spaces = []
       @available_moves = generate_all_moves(@width_of_board.times.to_a)
       @width_of_board.times do 
       @game_board << Array.new(@width_of_board)
@@ -22,11 +22,11 @@ module TicTacToe
     end
 
     def is_full?
-      @taken_spaces == @blank_spaces
+      @taken_spaces.length == @blank_spaces
     end
 
     def is_empty?
-      @taken_spaces == 0
+      @taken_spaces.length == 0
     end
 
     def get_row(row_index)
@@ -57,7 +57,7 @@ module TicTacToe
 
     def play_piece(piece, space)
         @game_board[space.first][space.last] = piece 
-        @taken_spaces += 1
+        @taken_spaces << space
         @available_moves.delete(space)
     end
 
