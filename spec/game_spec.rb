@@ -103,7 +103,7 @@ module TicTacToe
 
   context('#draw?') do 
     it "should return true if the board is full and there is no winner" do 
-      @game.board.taken_spaces = @game.board.width_of_board ** 2
+      @game.board.taken_spaces = [[0,0], [0,1], [0,2], [1,0], [1,1], [1,2], [2,0], [2,1], [2,2]]
       expect(@game.draw?).to be(true)
     end
     it "should return false if there is no draw" do 
