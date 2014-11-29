@@ -15,29 +15,31 @@ GameOverseer.prototype = {
     var that = this
     $('.who-starts-wrapper').hide()
     this.bindBoardClickEvents();
-    this.board.promptTurn()
+    this.board.goodLuck()
   },
   startComputer: function(){
     $('.who-starts-wrapper').hide()
     $.ajax({ url: '/start '}).done(this.processComputerMove.bind(this))
-    this.board.promptTurn()
+    this.board.goodLuck()
   },
   bindBoardClickEvents: function(){
     var that = this
-    this.board.grid.on("click", "div", function(){that.processHumanMove(this)})
+    this.board.grid.on("click", ".playable", function(){that.processHumanMove(this)})
   },
   processComputerMove: function(serverData){
     var data = JSON.parse(serverData)
     console.log(data)
     var computer_move = data.move_made
     if (!data.game_over){
-    this.movesMade.push(["player2", computer_move])
-    this.board.changeCellBackgroundForComputer(computer_move)
-    this.bindBoardClickEvents()
-    this.board.promptTurn()
-    } 
-    else { 
-      if (data.move_made == null && data.winner == null) {
+      this.movesMade.push(["player2", computer_move])
+      this.board.changeCellBackgroundForComputer(computer_move)
+      this.bindBoardClickEvents()
+    } else { 
+      this.processGameOver(data)
+    }
+  },
+  processGameOver: function(data){
+    if (data.move_made == null && data.winner == null) {
         this.board.displayTie()
         }
       else if (data.winner == null && data.move_made !== null){ 
@@ -46,7 +48,7 @@ GameOverseer.prototype = {
       else{
         this.board.changeCellBackgroundForComputer(data.move_made)
         this.board.displayWinner()
-      } }
+      } 
   },
   processHumanMove: function(div_clicked){
     this.board.disableBoardClick();

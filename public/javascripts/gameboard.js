@@ -11,12 +11,13 @@ GameBoard.prototype = {
   },
   changeCellBackgroundForHuman: function(div){
     $('#' + div + '').css("background-image", "url(images/hipmunk.png)")
-
+    $('#' + div + '').removeClass("playable")
   },
   changeCellBackgroundForComputer: function(computer_coords){
     $('#' + computer_coords.join("") + '').css("background-image", "url(images/o.png)")
+    $('#' + computer_coords.join("") + '').removeClass("playable")
   },
-  promptTurn: function(){
+  goodLuck: function(){
     $('.current-player').show()
 
   },
