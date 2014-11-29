@@ -5,7 +5,7 @@ body {
 
 header {
   text-align: center;
-  background-color: #3498DB; 
+  background-color: #2F91DC; 
   width: 100%;
   position: fixed;
   color: white;
@@ -38,7 +38,7 @@ button {
   padding:5px;
   width: 200px;
   font-size: 12pt;
-  background-color: #3498DB;
+  background-color: #2F91DC;
   border: 1px solid #666;
   color: white;
   text-decoration:none;
@@ -64,16 +64,16 @@ button {
 }
 
 .left-right {
-  border-left: 1px solid #3498DB;
-  border-right: 1px solid #3498DB;
+  border-left: 1px solid #2F91DC;
+  border-right: 1px solid #2F91DC;
 }
 
 .all-around {
-  border: 1px solid #3498DB;
+  border: 1px solid #2F91DC;
 }
 
 .up-down {
-  border-top: 1px solid #3498DB;
-  border-bottom: 1px solid #3498DB;
+  border-top: 1px solid #2F91DC;
+  border-bottom: 1px solid #2F91DC;
 }
 

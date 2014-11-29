@@ -20,7 +20,6 @@ GameOverseer.prototype = {
   startComputer: function(){
     $('.who-starts-wrapper').hide()
     $.ajax({ url: '/start '}).done(this.processComputerMove.bind(this))
-    this.bindBoardClickEvents();
     this.board.promptTurn()
   },
   bindBoardClickEvents: function(){
@@ -29,17 +28,25 @@ GameOverseer.prototype = {
   },
   processComputerMove: function(serverData){
     var data = JSON.parse(serverData)
+    console.log(data)
     var computer_move = data.move_made
     if (!data.game_over){
     this.movesMade.push(["player2", computer_move])
     this.board.changeCellBackgroundForComputer(computer_move)
     this.bindBoardClickEvents()
     this.board.promptTurn()
-    } else { 
-      if (data.move_made == null){ this.board.displayTie()} 
-      else {
+    } 
+    else { 
+      if (data.move_made == null && data.winner == null) {
+        this.board.displayTie()
+        }
+      else if (data.winner == null && data.move_made !== null){ 
         this.board.changeCellBackgroundForComputer(data.move_made)
-        this.board.displayWinner()} }
+        this.board.displayTie()} 
+      else{
+        this.board.changeCellBackgroundForComputer(data.move_made)
+        this.board.displayWinner()
+      } }
   },
   processHumanMove: function(div_clicked){
     this.board.disableBoardClick();
@@ -48,7 +55,6 @@ GameOverseer.prototype = {
     this.getComputerMove()
   },
   getComputerMove: function(){
-    console.log(this.movesMade)
     $.ajax({
       url: 'play',
       type: 'post',
