@@ -30,9 +30,15 @@ GameOverseer.prototype = {
   processComputerMove: function(serverData){
     var data = JSON.parse(serverData)
     var computer_move = data.move_made
+    if (!data.game_over){
     this.movesMade.push(["player2", computer_move])
     this.board.changeCellBackgroundForComputer(computer_move)
     this.board.promptTurn()
+    } else { 
+      if (data.move_made == null){ this.board.displayTie()} 
+      else {
+        this.board.changeCellBackgroundForComputer(data.move_made)
+        this.board.displayWinner()} }
   },
   processHumanMove: function(div_clicked){
     this.board.disableBoardClick();

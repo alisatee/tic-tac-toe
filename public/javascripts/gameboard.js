@@ -18,10 +18,13 @@ GameBoard.prototype = {
   },
   promptTurn: function(){
     $('.current-player').show()
-    console.log("WAT UP")
+
   },
   displayWinner:function(){
-
+    $('.game-stats-wrapper').html("<h1> THE COMPUTER WINS! </h1>")
+  },
+  displayTie: function(){
+    $('.game-stats-wrapper').html("<h1> IT'S A TIE! </h1>")
   }
 
 }

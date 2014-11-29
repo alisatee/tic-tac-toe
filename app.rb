@@ -19,7 +19,8 @@ post '/play' do
   all_board_moves = JSON.parse(params[:moves_made]) 
 
   game.catch_up_game(all_board_moves)
-  computer_move = game.computer_make_move()
+
+  computer_move = game.computer_make_move() if !game.over?
 
   {move_made: computer_move, game_over: game.over?(), winner: game.winner}.to_json
 end
