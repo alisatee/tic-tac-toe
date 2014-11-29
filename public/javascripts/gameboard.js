@@ -6,26 +6,26 @@ GameBoard.prototype = {
   disableBoardClick: function(){
     this.grid.off();
   },
-  makeHumanMove: function(div){
-
-  },
   changeCellBackgroundForHuman: function(div){
-    $('#' + div + '').css("background-image", "url(images/hipmunk.png)")
-    $('#' + div + '').removeClass("playable")
+    $('#' + div + '').css("background-image", "url(images/hipmunk.png)").removeClass("playable")
   },
   changeCellBackgroundForComputer: function(computer_coords){
-    $('#' + computer_coords.join("") + '').css("background-image", "url(images/o.png)")
-    $('#' + computer_coords.join("") + '').removeClass("playable")
+    $('#' + computer_coords.join("") + '').css("background-image", "url(images/o.png)").removeClass("playable")
   },
   goodLuck: function(){
-    $('.current-player').show()
-
+    $('.good-luck').show()
   },
   displayWinner:function(){
-    $('.game-stats-wrapper').html("<h1> THE COMPUTER WINS! </h1>")
+    $('.good-luck').hide()
+    $('.outcome-wrapper').html("<h2> THE COMPUTER WINS! </h2>")
   },
   displayTie: function(){
-    $('.game-stats-wrapper').html("<h1> IT'S A TIE! </h1>")
+    $('.good-luck').hide()
+    $('.outcome-wrapper').html("<h2> IT'S A TIE! </h2>")
+  },
+  reset: function(){
+    $(".reset").hide()
+    $('.outcome-wrapper').empty()
+    $(this.grid).children("div").css("background-image", '').removeClass("playable").addClass("playable")
   }
-
 }

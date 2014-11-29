@@ -16,8 +16,6 @@ module TicTacToe
       def start_game
         @game.current_player = @game.player2
         @move_coords = @game.player2.go_randomly(@game)
-
-        p @game
       end
 
       def catch_up_game(moves)
