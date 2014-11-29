@@ -38,7 +38,13 @@ module TicTacToe
     end
 
     def get_diagonal(direction)
-
+      diag = []
+      i = 0
+      while i < width_of_board do 
+        diag << @game_board[i][(direction == "SE" ? i : ((width_of_board - 1) - i))]
+        i += 1 
+      end
+      diag 
     end
 
     def in_bounds?(coordinates)

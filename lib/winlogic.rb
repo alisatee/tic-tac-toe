@@ -31,27 +31,11 @@ class WinLogic
   end
 
   def check_southeast_diag(player_piece)
-    i = 0 
-    while i < board_width do 
-      if @board.game_board[i][i] != player_piece
-        return false
-        break
-      end
-     i += 1
-    end
-    true
+    @board.get_diagonal("SE").all?{|diag_elem| diag_elem == player_piece}
   end
 
   def check_northeast_diag(player_piece)
-    i = 0
-    while i < board_width do 
-      if @board.game_board[i][(board_width - 1) - i] != player_piece
-        return false
-        break
-      end
-      i += 1
-    end
-    true 
+    @board.get_diagonal("NE").all?{|diag_elem| diag_elem == player_piece}
   end
 
 end
