@@ -2,6 +2,7 @@ module TicTacToe
   class Board 
     attr_reader :width_of_board, :blank_spaces
     attr_accessor :taken_spaces, :available_moves, :game_board
+    
     def initialize(width_of_board)
       @width_of_board = width_of_board
       self.create_game_board()
@@ -56,9 +57,9 @@ module TicTacToe
     end
 
     def play_piece(piece, space)
-        @game_board[space.first][space.last] = piece 
-        @taken_spaces << space
-        @available_moves.delete(space)
+      @game_board[space.first][space.last] = piece 
+      @taken_spaces << space
+      @available_moves.delete(space)
     end
 
     def generate_all_moves(array)

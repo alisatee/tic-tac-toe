@@ -1,6 +1,6 @@
 module TicTacToe
   class CommandlineDisplay
-
+    
     def render_game_welcome
       puts "Welcome to Tic Tac Toe!"
       puts "Flipping coin to see who gets to go first..."
@@ -41,7 +41,6 @@ module TicTacToe
 
     def validate_input(input)
       input =~ /\w,\w/ 
-    end
-    
+    end 
   end
 end

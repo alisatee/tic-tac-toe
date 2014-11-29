@@ -7,6 +7,7 @@ require_relative "commandlinedisplay"
 module TicTacToe
   class Application
     attr_reader :board 
+    
     def initialize
       @display = CommandlineDisplay.new
       @board = Board.new(3)
@@ -45,10 +46,10 @@ module TicTacToe
     end
 
     private
+
     def current_player
       @game.current_player
     end
-
   end
 end
 

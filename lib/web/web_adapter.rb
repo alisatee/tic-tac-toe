@@ -1,8 +1,8 @@
-require_relative "board"
-require_relative "game"
-require_relative "player"
-require_relative "unbeatableplayer"
-require_relative "commandlinedisplay"
+require_relative "../board"
+require_relative "../game"
+require_relative "../player"
+require_relative "../unbeatableplayer"
+require_relative "../commandlinedisplay"
 
 module TicTacToe
   module WebAdapter
