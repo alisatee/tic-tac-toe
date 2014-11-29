@@ -1,4 +1,5 @@
 require_relative "winlogic"
+
 module TicTacToe
   class Game
     attr_reader :board, :player1, :player2, :winner  
