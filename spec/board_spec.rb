@@ -21,20 +21,21 @@ module TicTacToe
           expect(row.length).to eq(3)
         end
       end
-      specify "the difference between the initial blank spaces and taken spaces should be the value of blank spaces by default" do
+      it "the difference between the initial blank spaces and taken spaces should be the value of blank spaces by default" do
         expect(@board.blank_spaces - @board.taken_spaces.length).to be(@board.blank_spaces)
       end 
-      specify "available moves should contain all of the playable moves on the board" do
+      it "available moves should contain all of the playable moves on the board" do
         @board.available_moves.each do |move|
           expect(@board.game_board[move.first][move.last]).to eq(nil)
         end
       end
+    end
 
     context '#reset_game_board' do
       it "should clear the game board" do 
         @board.game_board = [["X", "O", "X"],["X", "O", "X"],["X", "O", "X"]]
         @board.taken_spaces = [[0,0], [0,1], [0,2], [1,0], [1,1], [1,2], [2,0], [2,1], [2,2]]
-        @board.reset_game_board
+        @board.reset_game_board()
         expect(@board.game_board).to eq([[nil, nil, nil],[nil, nil, nil],[nil, nil, nil]])
       end
       it "should reset taken_spaces back to an empty array" do 
@@ -85,14 +86,5 @@ module TicTacToe
         expect(@board.available_moves).to_not include([0,1])
       end
     end
-    end
   end
-
-
-
-
-
-
-
-
 end
