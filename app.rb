@@ -1,4 +1,4 @@
-require_relative "lib/web_adapter"
+require_relative "lib/web/web_adapter"
 
 require 'sinatra'
 require 'json'

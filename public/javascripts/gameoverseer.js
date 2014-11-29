@@ -44,16 +44,15 @@ GameOverseer.prototype = {
   },
   processGameOver: function(data){
     if (data.move_made) { this.board.changeCellBackgroundForComputer(data.move_made) }
-    data.winner ? this.board.displayWinner() : this.board.displayTie()
-
-    $('.reset').show()
-    $('.start-over').one("click", function(){this.resetGame()}.bind(this))
+    data.winner ? this.board.displayWinner() : this.board.displayTie();
+    $('.reset').show();
+    $('.start-over').one("click", function(){this.resetGame()}.bind(this));
   },
   processHumanMove: function(div_clicked){
-    this.board.disableBoardClick()
-    this.movesMade.push(["player1", div_clicked.id.split("").map(Number)])
-    this.board.changeCellBackgroundForHuman(div_clicked.id)
-    this.getComputerMove()
+    this.board.disableBoardClick();
+    this.movesMade.push(["player1", div_clicked.id.split("").map(Number)]);
+    this.board.changeCellBackgroundForHuman(div_clicked.id);
+    this.getComputerMove();
   },
   getComputerMove: function(){
     $.ajax({
@@ -61,13 +60,13 @@ GameOverseer.prototype = {
       type: 'post',
       datatype: 'json',
       data: {moves_made: JSON.stringify(this.movesMade)}
-    }).done(this.processComputerMove.bind(this))
+    }).done(this.processComputerMove.bind(this));
   }
 }
 
 
 $(document).ready(function(){ 
   $('.start').click(function(){
-    new GameOverseer("gameboard").startGame()
-  })
-})
+    new GameOverseer("gameboard").startGame();
+  });
+});
