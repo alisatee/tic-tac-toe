@@ -6,7 +6,7 @@ require_relative "commandlinedisplay"
 
 module TicTacToe
   module WebAdapter
-    class WebAdapterConfig
+    class TicTacToeForWeb
       attr_reader :game, :move_coords 
 
       def initialize
@@ -14,28 +14,31 @@ module TicTacToe
       end
 
       def start_game
-        @game.choose_random_player()
+        @game.current_player = @game.player2
+        @move_coords = @game.player2.go_randomly(@game)
+      end
 
-        if @game.current_player == @game.player2
-          @move_coords = @game.player2.go_randomly(@game)
+      def catch_up_game(moves)
+        moves.each do |move|
+          player = move.first
+          move = move.last
+          player == "player1" ? @game.current_player = @game.player1 : @game.current_player = @game.player2
+          @game.make_move(move)
         end
       end
 
-      def recieve_response(board_state)
-
-        @game = Game.new(Board.new(3), Player.new("X"), UnbeatablePlayer.new("O"))
-        @game.board.game_board = params[:game_board]
-        @game.board.taken_spaces = params[:taken_spaces]
-        @game.board.available_moves = params[:available_moves]
+      def computer_make_move
+        @game.current_player = @game.player2
         @game.player2.make_best_move(@game)
-
-
       end
 
-      def make_move_for_player(coords_picked)
-
+      def over?
+        @game.over?()
       end
 
+      def winner
+        @game.winner()
+      end
     end
   end
 end

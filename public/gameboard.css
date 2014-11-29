@@ -22,12 +22,19 @@ header h1 {
   height: 370px;
 }
 
+.who-starts-wrapper {
+  display: none;
+}
+
+.current-player {
+  display: none;
+}
+
 .game-stats-wrapper {
   text-align: center;
 }
 
 button {
-  margin-top: 2em;
   padding:5px;
   width: 200px;
   font-size: 12pt;
@@ -37,6 +44,14 @@ button {
   text-decoration:none;
 }
 
+.start {
+  margin-top: 2em;
+}
+
+.vs {
+  padding-left: 2em;
+  padding-right: 2em;
+}
 .gameboard {
   width: 370px;
   margin: 0 auto;

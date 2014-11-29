@@ -1,44 +1,27 @@
-var Gameboard = function(board){
-  this.board = $('.' + board + '')
-  this.bindEvents()
-  this.movesMade = []
-
+var GameBoard = function(boardselector){
+  this.grid = $('.' + boardselector + '');
 }
 
-Gameboard.prototype = {
-  bindEvents: function(){
-    var that = this
-    this.board.on("click", "div", function(){that.changeBackgroundAndSendResponse(this)})
+GameBoard.prototype = {
+  disableBoardClick: function(){
+    this.grid.off();
   },
-  changeBackgroundAndSendResponse: function(div){
-    $(div).css("background-image", "url(images/hipmunk.png)")
-    this.movesMade.push(["player1", div.id.split("").map(Number)])
-    var that = this
-    $.ajax({
-      url: '/play',
-      type: 'post',
-      data: {moves_made: JSON.stringify(this.movesMade)}
-    }).done(function(serverData){that.renderBoard(serverData)})
-  },
+  makeHumanMove: function(div){
 
-  renderBoard: function(serverData){
-    console.log(serverData)
-    var serverData = JSON.parse(serverData)
-    this.game = serverData
-    var moveMade = serverData.move_made
-    if (moveMade !== null){
-      this.movesMade.push(["player2", moveMade])
-      $('#' + moveMade.join("") + '').css("background-image", "url(images/o.png)")
-    }
+  },
+  changeCellBackgroundForHuman: function(div){
+    $('#' + div + '').css("background-image", "url(images/hipmunk.png)")
+
+  },
+  changeCellBackgroundForComputer: function(computer_coords){
+    $('#' + computer_coords.join("") + '').css("background-image", "url(images/o.png)")
+  },
+  promptTurn: function(){
+    $('.current-player').show()
+    console.log("WAT UP")
+  },
+  displayWinner:function(){
+
   }
+
 }
-
-
-$(document).ready(function(){ 
-  $('.start').click(function(){
-    
-    new GameOverseer(new Gameboard("gameboard")).startGame()
-    
-  })
-
-})
