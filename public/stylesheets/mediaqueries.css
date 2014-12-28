@@ -1,0 +1,10 @@
+@media only screen and (max-width: 500px) {
+   .vs {
+    display: block;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+   .who-starts-wrapper {
+    text-align: center;
+  }
+}
